@@ -1,0 +1,468 @@
+<aura:component implements="forceCommunity:availableForAllPageTypes" controller="SelfRegistrationController">
+    <aura:attribute name="companyname" type="String"/>
+    <aura:attribute name="addressone" type="String"/>
+    <aura:attribute name="addresstwo" type="String"/>
+    <aura:attribute name="city" type="String"/>
+    <aura:attribute name="state" type="String"/>
+    <aura:attribute name="zip" type="String"/>
+    <aura:attribute name="country" type="String"/>
+    <aura:attribute name="phone" type="String"/>
+    <aura:attribute name="description" type="String"/>
+    <aura:attribute name="contractor" type="String"/>
+    <aura:attribute name="nonprofit" type="String"/>
+    <aura:attribute name="soleproprietor" type="String"/>
+    <aura:attribute name="btrcNumber" type="String"/>
+    <aura:attribute name="taxid" type="String"/>
+    <aura:attribute name="naicsCode" type="String"/>
+    <aura:attribute name="certNumber" type="String"/>
+    <aura:attribute name="userFirstName" type="String"/>
+    <aura:attribute name="userLastName" type="String"/>
+    <aura:attribute name="userEmail" type="String"/>
+    <aura:attribute name="userEmailConfirm" type="String"/>
+    <aura:attribute name="userTitle" type="String"/>
+    <ltng:require scripts="{!$Resource.jQuery341}" afterScriptsLoaded="{!c.doInit}" />
+    <div class="slds-grid">
+        <div class="slds-size_12-of-12 progressbarContainer">
+            <div class="slds-container_large slds-container_center">
+                <!-- Progress bar steps -->
+                <ul id="progressbar">
+                    <li class="active">
+                        <p>Company Information</p>
+                    </li>
+                    <li>
+                        <p>Select NAICS Codes</p>
+                    </li>
+                    <li>
+                        <p>Add Certifications</p>
+                    </li>
+                    <li>
+                        <p>Enter User Information</p>
+                    </li>
+                    <li>
+                        <p>Confirm Information</p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="slds-container_large slds-container_center formContainer">
+        <form id="msform">
+            <div class="slds-grid slds-gutters slds-grid--align-center">
+                <div class="slds-col slds-size_10-of-12" style="position: relative;">
+                    <!-- Step 1 -->
+                    <fieldset class="slds-box">
+                        <legend class="slds-text-heading--small 
+                                                                 slds-p-vertical--medium">
+                            COMPANY REGISTRATION
+                        </legend>
+                        <h3 class="fs-subtitle">Please enter your company's information. Fields marked with a * are required.</h3>
+                        
+                        <div class="slds-form" aria-labelledby="newcompanyform">
+                            <div class="slds-grid slds-wrap slds-gutters">
+                                <div class="slds-col slds-size_2-of-2">
+                                    <lightning:input aura:id="newCompanyFormStep1"
+                                                     label="Company Name"
+                                                     name="companyname"
+                                                     value="{!v.companyname}"
+                                                     required="true"
+                                                     placeholder="Name"/>
+                                </div>
+                                <div class="slds-col slds-size_2-of-2">
+                                    <lightning:input aura:id="newCompanyFormStep1" label="Address 1"
+                                                     name="addressone"
+                                                     value="{!v.addressone}"
+                                                     required="true"
+                                                     placeholder="Address 1"/>
+                                </div>
+                                <div class="slds-col slds-size_1-of-2">
+                                    <lightning:input aura:id="newCompanyFormStep1" label="Address 2"
+                                                     name="addresstwo"
+                                                     value="{!v.addresstwo}"
+                                                     placeholder="Address 2"/>
+                                </div>
+                                <div class="slds-col slds-size_1-of-2">
+                                    <lightning:input aura:id="newCompanyFormStep1" label="City"
+                                                     name="city"
+                                                     value="{!v.city}"
+                                                     required="true"
+                                                     placeholder="City"/>
+                                </div>
+                                <div class="slds-col slds-size_1-of-2">
+                                    <lightning:select name="state" label="State" required="true" value="{!v.state}">
+                                        <option value="California">California</option>
+                                        <option value="New York">New York</option>
+                                        <option value="Washington">Washington</option>
+                                    </lightning:select>
+                                </div>
+                                <div class="slds-col slds-size_1-of-2">
+                                    <lightning:input aura:id="newCompanyFormStep1" label="Zip"
+                                                     name="zip"
+                                                     value="{!v.zip}"
+                                                     required="true"
+                                                     placeholder="Zip"/>
+                                </div>
+                                <div class="slds-col slds-size_1-of-2">
+                                    <lightning:select name="country" label="Country" required="true" value="{!v.country}">
+                                        <option value="United States">United States</option>
+                                        <option value="Canada">Canada</option>
+                                        <option value="Mexico">Mexico</option>
+                                    </lightning:select>
+                                </div>
+                                <div class="slds-col slds-size_1-of-2">
+                                    <lightning:input aura:id="newCompanyFormStep1" label="Phone"
+                                                     name="phone"
+                                                     value="{!v.phone}"
+                                                     required="true"
+                                                     placeholder="Phone"/>
+                                </div>
+                                <div class="slds-col slds-size_2-of-2">
+                                    <lightning:textarea aura:id="newCompanyFormStep1"
+                                                        name="description" 
+                                                        label="Description"
+                                                        value="{!v.description}"
+                                                        placeholder="Description"/>
+                                </div>
+                            </div>
+                            
+                            <h3 class="fs-subtitle">Great, now let's gather some company info.</h3>
+                            <lightning:select name="contractor" label="Contractor" required="true" value="{!v.contractor}">
+                                <option value="Prime">Prime</option>
+                                <option value="Sub">Sub</option>
+                                <option value="Prime and Sub">Prime and Sub</option>
+                            </lightning:select>
+                            <lightning:select name="nonprofit" label="Non-Profit" value="{!v.nonprofit}">
+                                <option value="No">No</option>
+                                <option value="Yes">Yes</option>
+                            </lightning:select>
+                            <lightning:select name="soleproprietor" label="Sole Proprietor" value="{!v.soleproprietor}">
+                                <option value="No">No</option>
+                                <option value="Yes">Yes</option>
+                            </lightning:select>
+                            <lightning:input aura:id="newCompanyFormStep1" label="BTRC Number"
+                                             name="BTRCNumber"
+                                             value="{!v.btrcNumber}"
+                                             placeholder="BTRC Number"/>
+                            <h3 class="fs-subtitle">
+                                The Office of Finance issues BTRC (Business Tax Registration Certificate) 
+                                numbers to legally registered companies in Los Angeles.
+                            </h3>
+                            <div class="slds-grid slds-wrap slds-gutters">
+                                <div class="slds-col slds-size_1-of-3">
+                                    <lightning:input aura:id="newCompanyFormStep1"
+                                                     label="Tax ID"
+                                                     name="taxid"
+                                                     value="{!v.taxid}"
+                                                     required="true"/>
+                                </div>
+                                <div class="slds-col slds-size_2-of-3">
+                                    <lightning:button label="Check Tax Id" 
+                                                      variant="neutral"
+                                                      onclick="{!c.checkTax}"
+                                                      class="checkTaxButton"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div style="display: flex; justify-content: center;">
+                            <input type="button" name="next" id="next1" class="next action-button buttonNext1 slds-button slds-button_brand slds-m-top--large" value="Next" disabled="disabled"/>
+                        </div>
+                    </fieldset>
+                    <!-- Step 2 -->
+                    <fieldset class="slds-box">
+                        <legend id="companyaccountsearch" class="slds-text-heading--small 
+                                                                 slds-p-vertical--medium">
+                            SELECT NAICS CODES
+                        </legend>
+                        <h3 class="fs-subtitle">What type of business are you?</h3>
+                        <div>
+                            <div class="slds-notify slds-theme_warning banner">
+                                NAICS codes are a classification system developed by the US Census Bureau to determine what types of work a business performs. 
+                                Select NAICS codes for your profile to let us know the type of work your business performs. Start by clicking a 2 digit code and 
+                                drill down until you can select a 6 digit code to add to your profile.
+                                <p>
+                                    <br/>
+                                    <a href="https://www.census.gov/eos/www/naics/">Visit the Census website</a> for more information on the NAICS 
+                                    code system and help selecting NAICS codes.
+                                </p>
+                            </div>
+                            <lightning:input aura:id="newCompanyFormStep2" label="NAICS Code"
+                                             name="naicsCode"
+                                             value="{!v.naicsCode}"
+                                             required="true"
+                                             placeholder="000000"/>
+                        </div>
+                        <div style="display: flex; justify-content: center;">
+                            <input type="button" name="previous" class="previous action-button-previous slds-button slds-button_neutral slds-m-top--large" value="Previous"/>
+                            <input type="button" name="next" id="next2" class="next action-button slds-button slds-button_brand slds-m-top--large" value="Next"/>
+                        </div>
+                    </fieldset>
+                    <!-- Step 3 -->
+                    <fieldset class="slds-box">
+                        <legend id="companyaccountsearch" class="slds-text-heading--small 
+                                                                 slds-p-vertical--medium">
+                            ARE YOUR CERTIFIED?
+                        </legend>
+                        <div class="slds-notify slds-theme_warning banner">
+                            <p>
+                                The <a href="http://bca.lacity.org/index.cfm">Bureau of Contract Administration</a> 
+                                will review and verify your requests before your company is displayed 
+                                on BAVN as certified
+                            </p>
+                        </div>
+                        <div style="text-align: right;">
+                            <table class="slds-table slds-table_cell-buffer slds-no-row-hover slds-table_bordered">
+                                <thead>
+                                    <tr class="slds-line-height_reset">
+                                        <th scope="col">
+                                        </th>
+                                        <th class="" scope="col">
+                                            <div class="slds-truncate" title="Opportunity Name">Certification</div>
+                                        </th>
+                                        <th class="" scope="col">
+                                            <div class="slds-truncate" title="Account Name">Description</div>
+                                        </th>
+                                        <th class="" scope="col">
+                                            <div class="slds-truncate" title="Close Date">Certifying Agency</div>
+                                        </th>
+                                        <th class="" scope="col">
+                                            <div class="slds-truncate" title="Stage">Cert Number</div>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="slds-hint-parent">
+                                        <th scope="row">
+                                            <input type="checkbox" id="id-1" value="id-1" tabindex="0" aria-labelledby="check-select-all-label column-group-header" />
+                                        </th>
+                                        <th data-label="Certification">
+                                            <div class="slds-truncate" title="LGBTEBE">LGBTBE</div>
+                                        </th>
+                                        <td data-label="Description">
+                                            <div class="slds-truncate" title="LGBT Business Enterprise">LGBT Business Enterprise</div>
+                                        </td>
+                                        <td data-label="Certifying Agency">
+                                            <select>
+                                                <option value="">Select...</option>
+                                                <option value="">National LGBT Chamber of Commerce (NGLCC)</option>
+                                            </select>
+                                        </td>
+                                        <td data-label="Cert Number">
+                                            <lightning:input aura:id="newCompanyFormStep3" 
+                                                             name="certNumber" 
+                                                             value="{!v.certNumber}" 
+                                                             placeholder="000-00000-000" 
+                                                             class="certNumber"/>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <lightning:button label="Check Certification" 
+                                              variant="neutral"
+                                              onclick="{!c.checkCert}"
+                                              class="checkCertButton"/>
+                        </div>
+                        <div style="display: flex; justify-content: center;">
+                            <input type="button" name="previous" class="previous action-button-previous slds-button slds-button_neutral slds-m-top--large" value="Previous"/>
+                            <input type="button" name="next" id="next3" class="next action-button slds-button slds-button_brand slds-m-top--large" value="Next"/>
+                        </div>
+                    </fieldset>
+                    <!-- Step 4 -->
+                    <fieldset class="slds-box">
+                        <legend id="companyaccountsearch" class="slds-text-heading--small 
+                                                                 slds-p-vertical--medium">
+                            SET UP YOUR PROFILE
+                        </legend>
+                        <div class="slds-notify slds-theme_warning banner">
+                            <p>
+                                Your login information will be emailed to you after 
+                                you have completed your registration.
+                            </p>
+                        </div>
+                        <div>
+                            <div class="slds-form" aria-labelledby="newexpenseform">
+                                <div class="slds-grid slds-wrap slds-gutters">
+                                    <div class="slds-col slds-size_1-of-2">
+                                        <lightning:input aura:id="newCompanyFormStep4"
+                                                         label="First Name"
+                                                         name="userfirstname"
+                                                         value="{!v.userFirstName}"
+                                                         required="true"
+                                                         placeholder="First Name"/>
+                                    </div>
+                                    <div class="slds-col slds-size_1-of-2">
+                                        <lightning:input aura:id="newCompanyFormStep4"
+                                                         label="Last Name"
+                                                         name="userlastname"
+                                                         value="{!v.userLastName}"
+                                                         required="true"
+                                                         placeholder="Last Name"/>
+                                    </div>
+                                    <div class="slds-col slds-size_1-of-2">
+                                        <lightning:input aura:id="userEmail"
+                                                         label="Email"
+                                                         name="useremail"
+                                                         value="{!v.userEmail}"
+                                                         required="true"
+                                                         placeholder="Email"/>
+                                    </div>
+                                    <div class="slds-col slds-size_1-of-2">
+                                        <lightning:input aura:id="userEmailConfirm"
+                                                         label="Confirm Email"
+                                                         name="useremailconfirm"
+                                                         value=""
+                                                         required="true"
+                                                         placeholder="Confirm Email"
+                                                         showHelpMessageIfInvalid="Emails do not match"
+                                                         onchange="{!c.checkEmail}"/>
+                                    </div>
+                                    <div class="slds-col slds-size_2-of-2">
+                                        <lightning:input aura:id="newCompanyFormStep4"
+                                                         label="Title"
+                                                         name="usertitle"
+                                                         value="{!v.userTitle}"
+                                                         required="false"
+                                                         placeholder="Title"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div style="display: flex; justify-content: center;">
+                            <input type="button" name="previous" class="previous action-button-previous slds-button slds-button_neutral slds-m-top--large" value="Previous"/>
+                            <input type="button" name="next" id="next4" class="next action-button buttonNext4 slds-button slds-button_brand slds-m-top--large" value="Next" disabled="disabled"/>
+                        </div>
+                    </fieldset>
+                    <!-- Step 5 -->
+                    <fieldset class="slds-box">
+                        <legend id="companyaccountsearch" class="slds-text-heading--small 
+                                                                 slds-p-vertical--medium">
+                            OVERVIEW
+                        </legend>
+                        <div class="slds-grid slds-wrap slds-gutters confirmationPanel">
+                            <div class="slds-col slds-size_1-of-2">
+                                <h4>Company Information</h4>
+                                <div>
+                                    <label>Company:<span>{!v.companyname}</span></label>
+                                </div>
+                                <div>
+                                    <label>Address:<span>{!v.addressone}, {!v.city}&nbsp;{!v.zip}, {!v.state}&nbsp;{!v.country}</span></label>
+                                </div>
+                                <div>
+                                    <label>Phone:<span>{!v.phone}</span></label>
+                                </div>
+                                <div>
+                                    <label>Register as a:<span>{!v.contractor}</span></label>
+                                </div>
+                                <div>
+                                    <label>Non-profit:<span>{!v.nonprofit}</span></label>
+                                </div>
+                                <div>
+                                    <label>Sole Propietor:<span>{!v.soleproprietor}</span></label>
+                                </div>
+                                <div>
+                                    <label>BTRC:<span>{!v.btrcNumber}</span></label>
+                                </div>
+                                <div>
+                                    <label>Tax ID:<span>{!v.taxid}</span></label>
+                                </div>
+                            </div>
+                            <div class="slds-col slds-size_1-of-2">
+                                <h4>User Information</h4>
+                                <div>
+                                    <label>Name:<span>{!v.userFirstName}&nbsp;{!v.userLastName}</span></label>
+                                </div>
+                                <div>
+                                    <label>Email:<span>{!v.userEmail}</span></label>
+                                </div>
+                                <div>
+                                    <label>Title:<span>{!v.userTitle}</span></label>
+                                </div>
+                                <br/>
+                                <h4>NAICS Codes</h4>
+                                <div>
+                                    <label>NAICS:<span>{!v.naicsCode}</span></label>
+                                </div>
+                                <br/>
+                                <h4>Certifications</h4>
+                                <div>
+                                    <label>LGBTBE:<span>LGBT Business Enterprise</span></label>
+                                </div>
+                            </div>
+                        </div>
+                        <div style="display: flex; justify-content: center;">
+                            <input type="button" name="previous" class="previous action-button-previous slds-button slds-button_neutral slds-m-top--large" value="Previous"/>
+                            <input type="submit" name="submit" id="next5" class="submit action-button slds-button slds-button_brand slds-m-top--large" value="Submit" onclick="{!c.createRegistration}"/>
+                        </div>
+                    </fieldset>
+                </div>
+            </div>
+        </form>
+    </div>
+    <!-- Notification Toasts -->
+    <div class="slds-notify_container">
+        <div class="slds-notify slds-notify_toast slds-theme_success" id="checkTaxOK" role="status">
+            <span class="slds-assistive-text">success</span>
+            <span class="slds-icon_container slds-icon-utility-success slds-m-right_small slds-no-flex slds-align-top" title="Description of icon when needed">
+                <lightning:icon iconName="utility:success" size="small" variant="inverse" alternativeText="NAICS Code OK"/>
+            </span>
+            <div class="slds-notify__content">
+                <h2 class="slds-text-heading_small ">Tax ID Verified</h2>
+            </div>
+            <div class="slds-notify__close">
+                <button class="slds-button slds-button_icon slds-button_icon-inverse" title="Close">
+                    <lightning:icon iconName="utility:close" size="small" variant="inverse" alternativeText="Close toast"/>
+                    <span class="slds-assistive-text">Close</span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="slds-notify_container">
+        <div class="slds-notify slds-notify_toast slds-theme_error" id="checkTaxInvalid" role="status">
+            <span class="slds-assistive-text">success</span>
+            <span class="slds-icon_container slds-icon-utility-success slds-m-right_small slds-no-flex slds-align-top" title="Description of icon when needed">
+                <lightning:icon iconName="utility:success" size="small" variant="inverse" alternativeText="Tax ID valid"/>
+            </span>
+            <div class="slds-notify__content">
+                <h2 class="slds-text-heading_small ">Tax ID not verified</h2>
+            </div>
+            <div class="slds-notify__close">
+                <button class="slds-button slds-button_icon slds-button_icon-inverse" title="Close">
+                    <lightning:icon iconName="utility:close" size="small" variant="inverse" alternativeText="Close toast"/>
+                    <span class="slds-assistive-text">Close</span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="slds-notify_container">
+        <div class="slds-notify slds-notify_toast slds-theme_success" id="checkCertValid" role="status">
+            <span class="slds-assistive-text">success</span>
+            <span class="slds-icon_container slds-icon-utility-success slds-m-right_small slds-no-flex slds-align-top" title="Description of icon when needed">
+                <lightning:icon iconName="utility:success" size="small" variant="inverse" alternativeText="Certification valid"/>
+            </span>
+            <div class="slds-notify__content">
+                <h2 class="slds-text-heading_small ">Certification verified</h2>
+            </div>
+            <div class="slds-notify__close">
+                <button class="slds-button slds-button_icon slds-button_icon-inverse" title="Close">
+                    <lightning:icon iconName="utility:close" size="small" variant="inverse" alternativeText="Close toast"/>
+                    <span class="slds-assistive-text">Close</span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="slds-notify_container">
+        <div class="slds-notify slds-notify_toast slds-theme_error" id="checkCertInvalid" role="status">
+            <span class="slds-assistive-text">success</span>
+            <span class="slds-icon_container slds-icon-utility-success slds-m-right_small slds-no-flex slds-align-top" title="Description of icon when needed">
+                <lightning:icon iconName="utility:success" size="small" variant="inverse" alternativeText="Certification not valid"/>
+            </span>
+            <div class="slds-notify__content">
+                <h2 class="slds-text-heading_small ">Certification not verified</h2>
+            </div>
+            <div class="slds-notify__close">
+                <button class="slds-button slds-button_icon slds-button_icon-inverse" title="Close">
+                    <lightning:icon iconName="utility:close" size="small" variant="inverse" alternativeText="Close toast"/>
+                    <span class="slds-assistive-text">Close</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</aura:component>
