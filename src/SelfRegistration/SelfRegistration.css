@@ -1,0 +1,151 @@
+.THIS.formContainer {
+    margin-bottom: 80px;
+}
+
+.THIS #msform {
+    position: relative;
+}
+
+.THIS #msform fieldset {
+    background: white;
+    /*stacking fieldsets above each other*/
+    position: relative;
+}
+
+.THIS #msform fieldset:not(:first-of-type) {
+    display: none;
+}
+
+.THIS #msform .action-button:disabled {
+    background: #f3f3f3;
+    color: #000000;
+}
+
+/*headings*/
+.THIS .fs-title {
+    font-size: 18px;
+    text-transform: uppercase;
+    color: #2C3E50;
+    margin-bottom: 10px;
+    letter-spacing: 2px;
+    font-weight: bold;
+}
+
+.THIS .fs-subtitle {
+    font-weight: 100;
+    font-size: 1.4em;
+    color: #368af0;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+.THIS .progressbarContainer {
+    background-color: #368af0;
+    margin-bottom: 80px;
+}
+
+/*progressbar*/
+.THIS #progressbar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    overflow: hidden;
+    counter-reset: step;
+}
+
+.THIS #progressbar li {
+    list-style-type: none;
+    color: white;
+    text-transform: uppercase;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    background-color: #368af0;
+    padding: 30px 0;
+}
+
+.THIS #progressbar li p {
+    margin: 20px 0;
+}
+
+.THIS #progressbar li:before {
+    content: counter(step);
+    counter-increment: step;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: 1px solid #2b6dbd;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 3em;
+    color: #2b6dbd;
+    background-color: #368af0;
+    margin: 0 auto;
+    font-weight: 300;
+}
+
+.THIS #progressbar li.active {
+	background-color: white;
+	color: #368af0;    
+}
+
+.THIS #progressbar li.active:before, .THIS #progressbar li.active:after {
+    background-color: #368af0;
+    color: white;
+}
+
+.THIS .banner {
+    font-size: 1.2em;
+    font-weight: 300;
+    padding: 20px;
+    margin-bottom: 40px;
+}
+
+.THIS .checkArea {
+    display: flex;
+    flex-direction: row;
+}
+
+.THIS #checkTaxOK, .THIS #checkTaxInvalid, .THIS #checkCertValid, .THIS #checkCertInvalid {
+    display: none;
+}
+
+.THIS .checkTaxButton {
+    margin-top: 24px;
+}
+
+.THIS .certNumber label {
+    display: none;
+    visibility: hidden;
+}
+
+.THIS .checkCertButton {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-right: 2em;
+    width: 170px;
+}
+
+.THIS .confirmationPanel h4 {
+    text-transform: uppercase;
+    border-bottom: 1px solid grey;
+    padding: 10px 0;
+    margin: 20px 0;
+}
+
+.THIS .confirmationPanel label {
+    text-transform: uppercase;
+    display: flex;
+    justify-content: space-between;
+    color: #acacad;
+    margin-bottom: 5px;
+}
+
+.THIS .confirmationPanel label span {
+    text-transform: none;
+    color: #000;
+    margin-left: 30px;
+}
