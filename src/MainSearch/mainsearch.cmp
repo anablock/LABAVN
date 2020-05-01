@@ -1,0 +1,102 @@
+<aura:component implements="forceCommunity:availableForAllPageTypes,forceCommunity:searchInterface" access="GLOBAL" controller="MainSearchController">
+    <aura:attribute name="loginUrl" type="String" required="false" default="/login"/>
+    <aura:attribute name="selfRegisterUrl" type="String" required="false" default="/company-registration"/>
+    <aura:attribute name="advancedSearchUrl" type="String" required="false" default="/advanced-search"/>
+    <aura:attribute name="startUrl" type="String" required="false" description="The url you go to after a successful login" />
+    <aura:attribute name="backgroundImageURL" type="String" default=""/>
+    <aura:attribute name="bavnIdOrDesc" type="String" default=""/>
+    <aura:attribute name="category" type="String" default=""/>
+    <aura:attribute name="status" type="String" default=""/>
+    <aura:attribute name="type" type="String" default=""/>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    
+    <div class="mainSearchWrapper" style="{!'background:' + ' url(' + v.backgroundImageURL +') no-repeat;'}">
+        <div class="slds-container_large slds-container_center">
+            <h1>Search for Bid Opportunities</h1>
+            <div class="slds-grid">
+                <div class="slds-col">
+                    <lightning:input aura:id="searchInput"
+                                     required="true"
+                                     label=""
+                                     name="searchinput"
+                                     value="{!v.bavnIdOrDesc}"
+                                     placeholder="BAVN ID or Description"
+                                     class="searchInput"/>
+                </div>
+            </div>
+            <div class="slds-grid slds-gutters">
+                <div class="slds-col">
+                    <lightning:select aura:id="searchCategory" name="searchcategory" label="" value="{!v.category}">
+                        <option value="">- Category -</option>
+                        <option value="All">All</option>
+                        <option value="Commodity">Commodity</option>
+                        <option value="Construction">Construction</option>
+                        <option value="Personal Services">Personal Services</option>
+                    </lightning:select>
+                </div>
+                <div class="slds-col">
+                    <lightning:select aura:id="searchStatus" name="searchstatus" label="" value="{!v.status}">
+                        <option value="">- Status -</option>
+                        <option value="Open">Open</option>
+                        <option value="Amended">Amended</option>
+                        <option value="Awarded">Awarded</option>
+                        <option value="Bidder Selected">Bidder Selected</option>
+                        <option value="Closed">Closed</option>
+                        <option value="Pending Award">Pending Award</option>
+                        <option value="Withdrawn">Withdrawn</option>
+                    </lightning:select>
+                </div>
+                <div class="slds-col">
+                    <lightning:select aura:id="searchType" name="searchtype" label="" value="{!v.type}">
+                        <option value="">- Type -</option>
+                        <option value="All">All</option>          
+                        <option value="RFP - Request For Proposal">Request For Proposal</option>
+                        <option value="RFQ - Request For Qualification">Request For Qualification</option>
+                        <option value="RFI - Request For Interest">Request For Interest</option>
+                        <option value="RFB - Request For Bid">Request For Bid</option>
+                        <option value="RFQ - Request for Quote">Request For Quote</option>
+                        <option value="SS - Sole Source">Sole Source</option>
+                        <option value="TOS - Task Order Selection">Task Order Selection</option>
+                    </lightning:select>
+                </div>
+            </div>
+            <div class="advancedButtonWrapper">
+            	<lightning:button variant="base" 
+                                  label="Advanced search" 
+                                  title="Advanced search"
+                                  class="advancedButton"
+                                  onclick="{!c.navigateToAdvancedSearch}"/>
+            </div>
+            <div class="searchButtonWrapper">
+                <lightning:button variant="brand" 
+                                  label="Search" 
+                                  title="Search"
+                                  class="searchButton"
+                                  onclick="{!c.handleSearch}"/>
+            </div>
+        </div>
+    </div>
+    <div class="registerRegion">
+        <div class="slds-container_large slds-container_center">
+            <div class="slds-grid slds-gutters">
+                <div class="slds-col slds-size_2-of-3">
+                    <h3>
+                        Join BAVN to work with the City of Los Angeles and find unique opportunities for your business.
+                    </h3>
+                </div>
+                <div class="slds-col slds-size_1-of-3 buttonWrapper">
+                    <lightning:button variant="neutral" 
+                                      label="Register" 
+                                      title="register"
+                                      class="regLinkButton"
+                                      onclick="{!c.navigateToSelfRegister}"/>
+                    <lightning:button variant="base" 
+                                      label="Already registered? Login" 
+                                      title="Already registered"
+                                      class="loginLinkButton"
+                                      onclick="{!c.navigateToLogin}"/>
+                </div>
+            </div>
+        </div>
+    </div>
+</aura:component>
